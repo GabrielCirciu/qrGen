@@ -3,61 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QR Code Generator</title>
+    <title>Login QR Code</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 50px;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f4f4f9;
         }
-        input, button {
-            padding: 10px;
-            margin: 10px;
-            font-size: 16px;
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
         }
-        canvas {
-            margin: 20px auto;
-            display: block;
+        button:hover {
+            background-color: #0056b3;
+        }
+        #qrcode {
+            margin-top: 20px;
         }
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </head>
 <body>
-    <h1>QR Code Generator</h1>
-    <input type="text" id="text-input" placeholder="Enter text or URL" size="30">
-    <button onclick="generateQRCode()">Generate</button>
-    <div id="qrcode"></div>
-
-    <hr>
-
-    <h2>Login QR Code</h2>
-    <button onclick="generateLoginQRCode()">Login</button>
-    <div id="login-qrcode"></div>
+    <div>
+        <button onclick="generateLoginQRCode()">Login</button>
+        <div id="qrcode"></div>
+    </div>
 
     <script>
-        function generateQRCode() {
-            const qrDiv = document.getElementById('qrcode');
-            qrDiv.innerHTML = ""; // Clear previous QR code
-            const text = document.getElementById('text-input').value;
-            if (text.trim() === "") {
-                alert("Please enter some text!");
-                return;
-            }
-            new QRCode(qrDiv, {
-                text: text,
-                width: 200,
-                height: 200,
-            });
-        }
-
         function generateLoginQRCode() {
-            const loginQrDiv = document.getElementById('login-qrcode');
-            loginQrDiv.innerHTML = ""; // Clear previous login QR code
+            const qrDiv = document.getElementById('qrcode');
+            qrDiv.innerHTML = ""; // Clear any previous QR code
 
-            // The data to encode in the QR code (e.g., a unique login URL)
+            // The data to encode in the QR code
             const loginData = "https://yourwebsite.com/login?session=12345";
-            
-            new QRCode(loginQrDiv, {
+
+            new QRCode(qrDiv, {
                 text: loginData,
                 width: 200,
                 height: 200,
