@@ -3,53 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login QR Code</title>
+    <title>Random QR Code</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
+            height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            height: 100vh;
             background-color: #f4f4f9;
+            overflow: hidden;
         }
         button {
-            padding: 10px 20px;
+            position: absolute;
+            top: 20px;
             font-size: 18px;
+            padding: 10px 20px;
             background-color: #007bff;
             color: white;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            margin-top: 20px;
         }
         button:hover {
             background-color: #0056b3;
         }
         #qrcode {
-            margin-top: 20px;
+            margin-top: 60px; /* Space below the button */
         }
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </head>
 <body>
-    <div>
-        <button onclick="generateLoginQRCode()">Login</button>
-        <div id="qrcode"></div>
-    </div>
+    <button onclick="generateRandomQRCode()">Login</button>
+    <div id="qrcode"></div>
 
     <script>
-        function generateLoginQRCode() {
+        function generateRandomQRCode() {
             const qrDiv = document.getElementById('qrcode');
             qrDiv.innerHTML = ""; // Clear any previous QR code
 
-            // The data to encode in the QR code
-            const loginData = "https://yourwebsite.com/login?session=12345";
+            // Generate random text
+            const randomText = Math.random().toString(36).substring(2, 15) + 
+                               Math.random().toString(36).substring(2, 15);
 
+            // Create a QR code with the random text
             new QRCode(qrDiv, {
-                text: loginData,
+                text: randomText,
                 width: 200,
                 height: 200,
             });
