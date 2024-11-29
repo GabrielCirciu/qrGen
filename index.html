@@ -13,7 +13,8 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            background-color: #f4f4f9;
+            background: url('https://via.placeholder.com/1920x1080') no-repeat center center fixed; /* Replace with your image URL */
+            background-size: cover;
             overflow: hidden;
         }
         button {
@@ -37,12 +38,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </head>
 <body>
-    <button onclick="generateRandomQRCode()">Login</button>
+    <button id="login-button" onclick="generateRandomQRCode()">Login</button>
     <div id="qrcode"></div>
 
     <script>
         function generateRandomQRCode() {
             const qrDiv = document.getElementById('qrcode');
+            const loginButton = document.getElementById('login-button');
+
             qrDiv.innerHTML = ""; // Clear any previous QR code
 
             // Generate random text
@@ -55,6 +58,9 @@
                 width: 200,
                 height: 200,
             });
+
+            // Change button text to "Retry"
+            loginButton.textContent = "Retry";
         }
     </script>
 </body>
